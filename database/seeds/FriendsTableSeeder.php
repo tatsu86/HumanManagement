@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class HumansTableSeeder extends Seeder
+class FriendsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,14 +11,17 @@ class HumansTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('humans')->truncate();
+        DB::table('friends')->truncate();
 
-        $humans = [
+        $friends = [
             [
                 'last_name' => '本田',
                 'first_name' => '翼',
                 'last_name_kana' => 'ホンダ',
                 'first_name_kana' => 'ツバサ',
+                'jender' => '女',
+                'tel' => '000-0000-0000',
+                'email' => 'sample@example.com',
                 'feature' => 'ゲーマー',
                 'detail' => '詳細',
                 'birthday' => '1994/01/01',
@@ -28,6 +31,9 @@ class HumansTableSeeder extends Seeder
                 'first_name' => '日奈子',
                 'last_name_kana' => 'サクライ',
                 'first_name_kana' => 'ヒナコ',
+                'jender' => '女',
+                'tel' => '000-0000-0000',
+                'email' => 'sample@example.com',
                 'feature' => 'おっとり',
                 'detail' => '詳細',
                 'birthday' => '1994/01/01',
@@ -37,14 +43,17 @@ class HumansTableSeeder extends Seeder
                 'first_name' => 'ななみ',
                 'last_name_kana' => 'サクラバ',
                 'first_name_kana' => 'ナナミ',
+                'jender' => '女',
+                'tel' => '000-0000-0000',
+                'email' => 'sample@example.com',
                 'feature' => '13',
                 'detail' => '詳細',
                 'birthday' => '1994/01/01',
             ],
         ];
 
-        foreach($humans as $human) {
-            \App\Human::create($human);
+        foreach($friends as $friend) {
+            \App\Friend::create($friend);
         }
     }
 }

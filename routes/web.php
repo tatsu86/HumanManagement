@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('human', 'HumanController');
+Route::resource('friend', 'friendController');

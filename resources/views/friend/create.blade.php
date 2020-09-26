@@ -1,4 +1,4 @@
 @extends('_layout/header')
 @section('content')
-@include('human/_form', ['target' => 'update'])
+@include('friend/_form', ['target' => 'store'])
 @endsection
