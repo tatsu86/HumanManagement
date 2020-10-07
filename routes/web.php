@@ -17,4 +17,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('friend', 'friendController');
+// Route::resource('friend', 'friendController');
+
+Route::get('friend', 'friendController@index')->name('frined.index');
+Route::post('friend', 'friendController@store')->name('friend.store');
+Route::get('friend/create', 'friendController@create')->name('friend.create');
+Route::put('friend/{id}', 'friendController@update')->name('friend.update');
+Route::delete('friend/{id}', 'friendController@destroy')->name('friend.destroy');
+Route::get('friend/{id}/edit', 'friendController@edit')->name('friend.edit');
+

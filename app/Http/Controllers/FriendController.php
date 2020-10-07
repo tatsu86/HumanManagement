@@ -41,18 +41,19 @@ class friendController extends Controller
         $friend = new friend();
         $friend->last_name = $request->last_name;
         $friend->first_name = $request->first_name;
+        $friend->jender = $request->jender;
         $friend->feature = $request->feature;
         $friend->save();
 
         return redirect("/friend");
     }
 
-    public function show($id)
-    {
-        $friend = friend::findOrFail($id);
+    // public function show($id)
+    // {
+    //     $friend = friend::findOrFail($id);
 
-        return view('friend/show', compact('friend'));
-    }
+    //     return view('friend/show', compact('friend'));
+    // }
 
     public function edit($id)
     {
@@ -66,6 +67,7 @@ class friendController extends Controller
         $friend = friend::findOrFail($id);
         $friend->last_name = $request->last_name;
         $friend->first_name = $request->first_name;
+        $friend->jender = $request->jender;
         $friend->feature = $request->feature;
         $friend->save();
 
