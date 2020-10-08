@@ -41,7 +41,7 @@ class friendController extends Controller
         $friend = new friend();
         $friend->last_name = $request->last_name;
         $friend->first_name = $request->first_name;
-        $friend->jender = $request->jender;
+        $friend->gender = $request->gender;
         $friend->feature = $request->feature;
         $friend->save();
 
@@ -67,7 +67,7 @@ class friendController extends Controller
         $friend = friend::findOrFail($id);
         $friend->last_name = $request->last_name;
         $friend->first_name = $request->first_name;
-        $friend->jender = $request->jender;
+        $friend->gender = $request->gender;
         $friend->feature = $request->feature;
         $friend->save();
 

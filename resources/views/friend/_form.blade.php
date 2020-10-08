@@ -33,23 +33,11 @@
           </div>
         </div>
         <div class="form-group"> 
-          <label for="jender">性別</label>
-          {{Form::select('jender', ['' => '選択してください']+['男' => '男', '女' => '女'], old('jender', $friend->jender ), ['class' => 'form-control'])}}
-          {{-- {{ $jender_list = ['男', '女'] }}
-          <select name="jender">
-            <option value="">選択してください。</option>
-            @foreach($jender_list as $jender)
-              @if($jender === $frined->jender)
-                <option value="{{ $jender }}" selected>{{ $jender }}</option>
-              @else
-                <option value="{{ $jender }}">{{ $jender }}</option>
-              @endif
-            @endforeach
-          </select> --}}
+          <label for="gender">性別</label>
+          {{Form::select('gender', ['男' => '男', '女' => '女'], old('gender', $friend->gender ), ['placeholder' => '選択してください', 'class' => 'form-control'])}}
         </div>
         <div class="form-group">
           <label for="feature">特徴</label>
-          {{-- <textarea class="form-control" name="feature" value="{{ $friend->feature }}"></textarea> --}}
           {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
         </div>
       </form>

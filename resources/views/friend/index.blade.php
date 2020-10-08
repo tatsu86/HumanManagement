@@ -35,7 +35,7 @@
           </td>
           <td>{{ $friend->last_name }}</td>
           <td>{{ $friend->first_name }}</td>
-          <td>{{ $friend->jender }}</td>
+          <td>{{ $friend->gender }}</td>
           <td>{{ $friend->feature }}</td>
           <td>
             <form action="/friend/{{ $friend->id }}/edit" method="get">

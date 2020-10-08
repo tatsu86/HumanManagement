@@ -19,7 +19,7 @@ class CreateFriendsTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name_kana')->nullable();
             $table->string('first_name_kana')->nullable();
-            $table->string('jender')->nullable();
+            $table->string('gender')->nullable();
             $table->string('feature')->nullable();
             $table->string('detail')->nullable();
             $table->string('tel')->nullable();
