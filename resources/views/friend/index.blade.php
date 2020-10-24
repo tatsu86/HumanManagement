@@ -9,8 +9,17 @@
   </div>
 
   <form action="{{ url('/friend') }}" method="GET">
-    <p><label>名前 </label><input type="text" name="name" value={{ $name }}></p>
-    <p><label>特徴 </label><input type="text" name="feature" value={{ $feature }}></p>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="name">名前</label>
+        <input type="text" name="name" class="form-control" value={{ $name }}>
+      </div>
+      <div class="form-group col-md-4">
+        <label>特徴</label>
+        <input type="text" name="feature" class="form-control" value={{ $feature }}>
+      </div>
+    </div>
+
     <a href="/friend" class="btn btn-default">クリア</a>
     <input type="submit" class="btn btn-primary" value="検索">
     <a href="/friend/create" class="btn btn-success">新規登録</a>

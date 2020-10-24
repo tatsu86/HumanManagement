@@ -1,7 +1,9 @@
 <head>
   <title>Management Friends</title>
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
-  <script src="{{ asset('/js/app.js') }}"></script>
+  {{-- <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}"> --}}
+  <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
+  <script src="{{ mix('/js/app.js') }}"></script>
+
   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
   {{-- フォント追加 --}}
   <link href="https://fonts.googleapis.com/css?family=Caveat rel="stylesheet">

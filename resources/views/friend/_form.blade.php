@@ -5,47 +5,37 @@
   <h3>フレンド編集</h3>
   @endif
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-1">
-      @if($target == 'store')
-      <form id="frmMain" action="/friend" method="post">
-      @elseif($target == 'update')
-      <form id="frmMain" action="/friend/{{ $friend->id }}" method="post">
-        <input type="hidden" name="_method" value="PUT">
-      @endif
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        {{-- <div class="form-group">
-          <label for="last_name">姓</label>
-          <input type="text" class="form-control" name="last_name" value="{{ $friend->last_name }}">
-        </div>
-        <div class="form-group">
-          <label for="first_name">名</label>
-          <input type="text" class="form-control" name="first_name" value="{{ $friend->first_name }}">
-        </div> --}}
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="last_name">姓</label>
-            <input type="text" class="form-control" name="last_name" value="{{ $friend->last_name }}" placeholder="姓">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="first_name">名</label>
-            <input type="text" class="form-control" name="first_name" value="{{ $friend->first_name }}" placeholder="名">
-          </div>
-        </div>
-        <div class="form-group"> 
-          <label for="gender">性別</label>
-          {{Form::select('gender', ['男' => '男', '女' => '女'], old('gender', $friend->gender ), ['placeholder' => '選択してください', 'class' => 'form-control'])}}
-        </div>
-        <div class="form-group">
-          <label for="feature">特徴</label>
-          {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
-        </div>
-      </form>
+  @if($target == 'store')
+  <form id="frmMain" action="/friend" method="post">
+  @elseif($target == 'update')
+  <form id="frmMain" action="/friend/{{ $friend->id }}" method="post">
+    <input type="hidden" name="_method" value="PUT">
+  @endif
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="last_name">姓</label>
+        <input type="text" class="form-control" name="last_name" value="{{ $friend->last_name }}" placeholder="姓">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="first_name">名</label>
+        <input type="text" class="form-control" name="first_name" value="{{ $friend->first_name }}" placeholder="名">
+      </div>
     </div>
-  </div>
+    <div class="form-row">
+      <div class="form-group col-md-3"> 
+        <label for="gender">性別</label>
+        {{Form::select('gender', ['男' => '男', '女' => '女'], old('gender', $friend->gender ), ['placeholder' => '選択してください', 'class' => 'form-control'])}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="feature">特徴</label>
+      {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
+    </div>
+  </form>
 </div>
 
-{{-- <button type="button" onclick="showAlert();">alert</button> --}}
+<button type="button" onclick="showAlert();">alert</button>
 
 {{-- fixed-bottom --}}
 <div class="popup-footer">
@@ -94,11 +84,15 @@
 </div> --}}
 
 {{-- +TODO:resources/js/app.jsに記述して動かしたい --}}
-{{-- <script>
+<script>
   function deleteAlert() {
     if(!window.confirm('本当に削除しますか？')){
       return false;
     }
     document.deleteform.submit();
   }
-</script> --}}
+
+  // function showAlert() {
+  //   alert("showAlert");
+  // }
+</script>
