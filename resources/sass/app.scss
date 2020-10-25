@@ -7,11 +7,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.popup-footer {
-  background-color: #dcdcdc;
-  height:100px;
-  width:100%;
-  padding-top:20px;
-  // position: absolute;
-  // bottom:0;
+.footer {
+  ul {
+    display: -webkit-flex;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    li {
+      padding-right: 10px;
+    }
+  }
 }

@@ -1,8 +1,9 @@
 <head>
   <title>Management Friends</title>
-  {{-- <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}"> --}}
-  <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
-  <script src="{{ mix('/js/app.js') }}"></script>
+  {{-- TODO:app.jsが読み込めない --}}
+  <script src="{{ mix('js/app.js') }}" defer></script>
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+  
 
   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
   {{-- フォント追加 --}}
@@ -17,5 +18,7 @@
   </div>
 </head>
 <div>
+  {{-- <button type="button" onclick="showAlert();">showAlert</button> --}}
+
   @yield('content')
 </div>

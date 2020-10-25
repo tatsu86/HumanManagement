@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-botton:100px;">
   @if($target == 'store')
   <h3>フレンド登録</h3>
   @elseif($target == 'update')
@@ -33,57 +33,31 @@
       {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
     </div>
   </form>
-</div>
 
-<button type="button" onclick="showAlert();">alert</button>
-
-{{-- fixed-bottom --}}
-<div class="popup-footer">
-  <div class="container-fluid" style="display:flex;">
+  <div class="footer">
+    <ul>
+      <li>
         @if($friend->id <> "")
         <form action="/friend/{{ $friend->id }}" method="post" >
           @csrf
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit"class="btn btn-danger" onClick="deleteAlert();return false;">削除</button>
+          <button type="submit"class="btn btn-danger" onClick="return deleteAlert();">削除</button>
         </form>
         @endif
-
+      </li>
+      <li>
         @if($target == 'store')
         <button type="submit" form="frmMain" class="btn btn-primary">登録</button>
         @elseif($target == 'update')
         <button type="submit" form="frmMain" class="btn btn-primary">保存</button>
         @endif
-
+      </li>
+    </ul>
   </div>
 </div>
 
+{{-- <button type="button" onclick="showAlert();">alert</button> --}}
 
-
-
-
-{{-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <h5 class="modal-title" id="deleteModal">削除してもよろしいですか？</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      この処理は元に戻せません。
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-      <form id="frmDelete" action="{{ route('friend.destroy', ['id' => $friend->id]) }}" method="delete">
-        @csrf
-        <input type="hidden" name="id" value="{{ old('id', $friend->id) }}">
-        <button type="submit" form="frmDelete" class="btn btn-danger">削除</button>
-      </form>
-    </div>
-  </div>
-</div> --}}
-
-{{-- +TODO:resources/js/app.jsに記述して動かしたい --}}
 <script>
   function deleteAlert() {
     if(!window.confirm('本当に削除しますか？')){
@@ -91,8 +65,4 @@
     }
     document.deleteform.submit();
   }
-
-  // function showAlert() {
-  //   alert("showAlert");
-  // }
 </script>
