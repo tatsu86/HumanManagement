@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 // Route::resource('friend', 'friendController');
 
@@ -26,3 +26,12 @@ Route::put('friend/{id}', 'friendController@update')->name('friend.update');
 Route::delete('friend/{id}', 'friendController@destroy')->name('friend.destroy');
 Route::get('friend/{id}/edit', 'friendController@edit')->name('friend.edit');
 
+
+Auth::routes();
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+Route::get('/', 'HomeController@index')->name('home');

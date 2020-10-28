@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\friend;
+use Illuminate\Support\Facades\Auth;
 
 class friendController extends Controller
 {
@@ -13,6 +14,8 @@ class friendController extends Controller
         $feature = $request->input('feature');
 
         $query = friend::query();
+
+        $query->where('user_id', Auth::id());
 
         if (!empty($name)) {
             $query->where('last_name', 'LIKE', "%{$name}%")
@@ -39,6 +42,7 @@ class friendController extends Controller
     public function store(Request $request)
     {
         $friend = new friend();
+        $friend->user_id = Auth::id();
         $friend->last_name = $request->last_name;
         $friend->first_name = $request->first_name;
         $friend->gender = $request->gender;

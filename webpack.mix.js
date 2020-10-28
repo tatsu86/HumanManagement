@@ -13,6 +13,3 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
-
-// popper.js 404のエラーを防止
-mix.sourceMaps().js('node_modules/popper.js/dist/popper.js', 'public/js').sourceMaps();
