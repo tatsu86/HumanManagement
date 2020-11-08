@@ -31,8 +31,8 @@
       <table class="table text-center">
         <tr>
           <th class="text-center">ID</th>
-          <th class="text-center">性</th>
-          <th class="text-center">名</th>
+          <th class="text-center">名前(漢字)</th>
+          <th class="text-center">名前(カナ)</th>
           <th class="text-center">性別</th>
           <th class="text-center">特徴</th>
           <th class="text-center">編集</th>
@@ -42,8 +42,8 @@
           <td>
             {{ $friend->id }}
           </td>
-          <td>{{ $friend->last_name }}</td>
-          <td>{{ $friend->first_name }}</td>
+          <td>{{ $friend->name }}</td>
+          <td>{{ $friend->name_kana }}</td>
           <td>{{ $friend->gender }}</td>
           <td>{{ $friend->feature }}</td>
           <td>

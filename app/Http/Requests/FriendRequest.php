@@ -24,10 +24,8 @@ class friendRequest extends FormRequest
     public function rules()
     {
         return [
-            'last_name' => 'string|max:30',
-            'first_name' => 'string|max:30',
-            'last_name_kana' => 'string|max:30',
-            'first_name_kana' => 'string|max:30',
+            'name' => 'string|max:30',
+            'name_kana' => 'string|max:30',
             'gender' => 'string|max:1',
             'tel' => 'string|max:17',
             // 'email' => 'sample@example.com',

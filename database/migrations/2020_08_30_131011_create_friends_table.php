@@ -16,10 +16,8 @@ class CreateFriendsTable extends Migration
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('last_name')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name_kana')->nullable();
-            $table->string('first_name_kana')->nullable();
+            $table->string('name')->nullable();
+            $table->string('name_kana')->nullable();
             $table->string('gender')->nullable();
             $table->string('feature')->nullable();
             $table->string('detail')->nullable();

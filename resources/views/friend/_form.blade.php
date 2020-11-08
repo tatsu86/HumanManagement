@@ -13,13 +13,15 @@
   @endif
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="last_name">姓</label>
-        <input type="text" class="form-control" name="last_name" value="{{ $friend->last_name }}" placeholder="姓">
+      <div class="form-group col-md-12">
+        <label for="name">名前(漢字)</label>
+        <input type="text" class="form-control" name="name" value="{{ $friend->name }}" placeholder="名前(漢字)">
       </div>
-      <div class="form-group col-md-6">
-        <label for="first_name">名</label>
-        <input type="text" class="form-control" name="first_name" value="{{ $friend->first_name }}" placeholder="名">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="name_kana">名前(カナ)</label>
+        <input type="text" class="form-control" name="name_kana" value="{{ $friend->name_kana }}" placeholder="名前(カナ)">
       </div>
     </div>
     <div class="form-row">

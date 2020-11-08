@@ -18,10 +18,8 @@ class friendController extends Controller
         $query->where('user_id', Auth::id());
 
         if (!empty($name)) {
-            $query->where('last_name', 'LIKE', "%{$name}%")
-                ->orWhere('first_name', 'LIKE', "%{$name}%")
-                ->orWhere('last_name_kana', 'LIKE', "%{$name}%")
-                ->orWhere('first_name_kana', 'LIKE', "%{$name}%");
+            $query->where('name', 'LIKE', "%{$name}%")
+                ->orWhere('name_kana', 'LIKE', "%{$name}%");
         }
 
         if(!empty($feature)) {
@@ -43,8 +41,8 @@ class friendController extends Controller
     {
         $friend = new friend();
         $friend->user_id = Auth::id();
-        $friend->last_name = $request->last_name;
-        $friend->first_name = $request->first_name;
+        $friend->name = $request->name;
+        $friend->name_kana = $request->name_kana;
         $friend->gender = $request->gender;
         $friend->feature = $request->feature;
         $friend->save();
@@ -69,8 +67,8 @@ class friendController extends Controller
     public function update(Request $request, $id)
     {
         $friend = friend::findOrFail($id);
-        $friend->last_name = $request->last_name;
-        $friend->first_name = $request->first_name;
+        $friend->name = $request->name;
+        $friend->name_kana = $request->name_kana;
         $friend->gender = $request->gender;
         $friend->feature = $request->feature;
         $friend->save();
