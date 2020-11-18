@@ -12,6 +12,7 @@ class friendController extends Controller
     {
         $name = $request->input('name');
         $feature = $request->input('feature');
+        $gender = $request->input('gender');
 
         $query = friend::query();
 
@@ -22,13 +23,17 @@ class friendController extends Controller
                 ->orWhere('name_kana', 'LIKE', "%{$name}%");
         }
 
+        if (!empty($gender)) {
+            $query->where('gender', $gender);
+        }
+
         if(!empty($feature)) {
             $query->where('feature', 'LIKE', "%{$feature}%");
         }
         
         $friends = $query->get();
 
-        return view('friend/index', compact('friends', 'name', 'feature'));
+        return view('friend/index', compact('friends', 'name', 'feature', 'gender'));
     }
 
     public function create()
@@ -45,17 +50,26 @@ class friendController extends Controller
         $friend->name_kana = $request->name_kana;
         $friend->gender = $request->gender;
         $friend->feature = $request->feature;
+        // TODO:画像圧縮をする
+        if (!empty($request->profile_img)) {
+            $originalImg = $request->profile_img;
+            logger("originalImg: " . $originalImg);
+            $filePath = $originalImg->store('public');
+            logger("$filePath: " . $filePath);
+            $friend->profile_img = str_replace('public/', '', $filePath);
+            logger("friend->profile_img: " . $friend->profile_img);
+        }
         $friend->save();
 
         return redirect("/friend");
     }
 
-    // public function show($id)
-    // {
-    //     $friend = friend::findOrFail($id);
+    public function show($id)
+    {
+        $friend = friend::findOrFail($id);
 
-    //     return view('friend/show', compact('friend'));
-    // }
+        return view('friend/show', compact('friend'));
+    }
 
     public function edit($id)
     {
@@ -71,6 +85,7 @@ class friendController extends Controller
         $friend->name_kana = $request->name_kana;
         $friend->gender = $request->gender;
         $friend->feature = $request->feature;
+        $friend->profile_img = $request->profile_img;
         $friend->save();
 
         return redirect("/friend");

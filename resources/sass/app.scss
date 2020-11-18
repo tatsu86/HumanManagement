@@ -16,7 +16,7 @@ body {
   font-size:1.5rem;
 }
 
-.footer {
+.btn-area {
   ul {
     display: -webkit-flex;
     display: flex;
@@ -26,4 +26,18 @@ body {
       padding-right: 10px;
     }
   }
+}
+
+.profile-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.profile-img-sm {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid black;
 }

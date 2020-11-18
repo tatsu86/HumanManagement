@@ -24,6 +24,7 @@ class CreateFriendsTable extends Migration
             $table->string('tel')->nullable();
             $table->string('email')->nullable();
             $table->date('birthday')->nullable();
+            $table->string('profile_img')->nullable();
             $table->timestamps();
         });
     }

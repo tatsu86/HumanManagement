@@ -25,6 +25,7 @@ Route::get('friend/create', 'friendController@create')->name('friend.create');
 Route::put('friend/{id}', 'friendController@update')->name('friend.update');
 Route::delete('friend/{id}', 'friendController@destroy')->name('friend.destroy');
 Route::get('friend/{id}/edit', 'friendController@edit')->name('friend.edit');
+Route::get('friend/{id}', 'friendController@show')->name('friend.show');
 
 
 Auth::routes();

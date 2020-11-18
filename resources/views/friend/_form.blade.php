@@ -5,13 +5,33 @@
   <h3>フレンド編集</h3>
   @endif
 
+  <div class="btn-area">
+    <ul>
+      <li>
+        @if($target == 'store')
+        <button type="submit" form="frmMain" class="btn btn-primary">登録</button>
+        @elseif($target == 'update')
+        <button type="submit" form="frmMain" class="btn btn-primary">保存</button>
+        @endif
+      </li>
+    </ul>
+  </div>
+
   @if($target == 'store')
-  <form id="frmMain" action="/friend" method="post">
+  <form id="frmMain" action="/friend" method="post" enctype="multipart/form-data">
   @elseif($target == 'update')
-  <form id="frmMain" action="/friend/{{ $friend->id }}" method="post">
+  <form id="frmMain" action="/friend/{{ $friend->id }}" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT">
   @endif
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    {{-- TODO:画像アップロード --}}
+    @if (!empty($friend->profile_img))
+    <img src="{{ asset('storage/' . $friend->profile_img) }}" class="profile-img">
+    @else
+    <img src="{{ asset('img/unknown.png') }}" class="profile-img">
+    @endif
+    <input type="file" name="profile_img">
+
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="name">名前(漢字)</label>
@@ -35,27 +55,6 @@
       {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
     </div>
   </form>
-
-  <div class="footer">
-    <ul>
-      <li>
-        @if($friend->id <> "")
-        <form action="/friend/{{ $friend->id }}" method="post" >
-          @csrf
-          <input type="hidden" name="_method" value="DELETE">
-          <button type="submit"class="btn btn-danger" onClick="return deleteAlert();">削除</button>
-        </form>
-        @endif
-      </li>
-      <li>
-        @if($target == 'store')
-        <button type="submit" form="frmMain" class="btn btn-primary">登録</button>
-        @elseif($target == 'update')
-        <button type="submit" form="frmMain" class="btn btn-primary">保存</button>
-        @endif
-      </li>
-    </ul>
-  </div>
 </div>
 
 {{-- <button type="button" onclick="showAlert();">alert</button> --}}

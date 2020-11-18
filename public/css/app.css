@@ -10908,13 +10908,27 @@ body {
   font-size: 1.5rem;
 }
 
-.footer ul {
+.btn-area ul {
   display: flex;
   list-style: none;
   padding: 0;
 }
 
-.footer ul li {
+.btn-area ul li {
   padding-right: 10px;
+}
+
+.profile-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.profile-img-sm {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid black;
 }
 

@@ -27,7 +27,7 @@ class friendRequest extends FormRequest
             'name' => 'string|max:30',
             'name_kana' => 'string|max:30',
             'gender' => 'string|max:1',
-            'tel' => 'string|max:17',
+            'feature' => 'string|max:255',
             // 'email' => 'sample@example.com',
         ];
     }
