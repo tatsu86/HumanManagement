@@ -44,7 +44,7 @@
         <tr>
           <td>
             @if (!empty($friend->profile_img))
-            <img src="{{ asset('storage/' . $friend->profile_img) }}" class="profile-img-sm">
+            <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm">
             @else
             {{-- TODO:unknown画像を呼び出せていない --}}
             <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm">

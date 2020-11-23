@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('friend', 'friendController');
 
-Route::get('friend', 'friendController@index')->name('frined.index');
-Route::post('friend', 'friendController@store')->name('friend.store');
-Route::get('friend/create', 'friendController@create')->name('friend.create');
-Route::put('friend/{id}', 'friendController@update')->name('friend.update');
-Route::delete('friend/{id}', 'friendController@destroy')->name('friend.destroy');
-Route::get('friend/{id}/edit', 'friendController@edit')->name('friend.edit');
-Route::get('friend/{id}', 'friendController@show')->name('friend.show');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('friend', 'friendController@index')->name('frined.index');
+    Route::post('friend', 'friendController@store')->name('friend.store');
+    Route::get('friend/create', 'friendController@create')->name('friend.create');
+    Route::put('friend/{id}', 'friendController@update')->name('friend.update');
+    Route::delete('friend/{id}', 'friendController@destroy')->name('friend.destroy');
+    Route::get('friend/{id}/edit', 'friendController@edit')->name('friend.edit');
+    Route::get('friend/{id}', 'friendController@show')->name('friend.show');    
+});
 
 
 Auth::routes();

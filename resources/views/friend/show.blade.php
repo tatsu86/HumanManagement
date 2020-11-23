@@ -26,7 +26,7 @@
 
   {{-- TODO:画像表示 --}}
   @if (!empty($friend->profile_img))
-  <img src="{{ asset('storage/' . $friend->profile_img) }}" class="profile-img">
+  <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img">
   @else
   <img src="{{ asset('img/unknown.png') }}" class="profile-img">
   @endif

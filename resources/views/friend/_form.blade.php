@@ -26,7 +26,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     {{-- TODO:画像アップロード --}}
     @if (!empty($friend->profile_img))
-    <img src="{{ asset('storage/' . $friend->profile_img) }}" class="profile-img">
+    <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img">
     @else
     <img src="{{ asset('img/unknown.png') }}" class="profile-img">
     @endif
