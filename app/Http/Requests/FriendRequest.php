@@ -13,7 +13,7 @@ class friendRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,11 +24,21 @@ class friendRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|max:30',
+            'name' => 'required|string|max:30',
             'name_kana' => 'string|max:30',
             'gender' => 'string|max:1',
             'feature' => 'string|max:255',
-            // 'email' => 'sample@example.com',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+          'name.required' => '名前は必ず入力してください。',
+          'name.max' => '名前は30文字以内で入力してください。',
+          'name_kana.required' => '名前カナは必ず入力してください。',
+          'name_kana.max' => '名前カナは30文字以内で入力してください。',
+          
         ];
     }
 }

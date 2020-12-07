@@ -7,6 +7,11 @@
     <ul>
       @if($friend->id <> "")
       <li>
+        <form id="frmBack" action="{{ route('friend.index') }}">
+          <button type="submit" form="frmBack" class="btn btn-secondary">戻る</button>
+        </form>
+      </li>
+      <li>
         <form action="/friend/{{ $friend->id }}/edit" method="get">
           <button type="submit" class="btn btn-secondary">編集</button>
         </form>
@@ -23,6 +28,7 @@
   </div>
 
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  <input type="hidden" name="friend_id" value="{{ $friend->id }}">
 
   {{-- TODO:画像表示 --}}
   @if (!empty($friend->profile_img))
@@ -30,34 +36,39 @@
   @else
   <img src="{{ asset('img/unknown.png') }}" class="profile-img">
   @endif
+{{-- 
+  @if (!empty($friend->name_kana))
+  <p>{{$friend->name_kana}}</p>
+  @endif --}}
 
+  @if (!empty($friend->name))
+  <p style="font-weight:bold; font-size:1.2rem;">{{$friend->name}}</p>
+  @endif
 
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="name">名前(漢字)</label>
-      <input type="text" class="form-control" name="name" value="{{ $friend->name }}" placeholder="名前(漢字)" readonly>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="name_kana">名前(カナ)</label>
-      <input type="text" class="form-control" name="name_kana" value="{{ $friend->name_kana }}" placeholder="名前(カナ)" readonly>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-3"> 
-      <label for="gender">性別</label>
-      {{Form::select('gender', ['男' => '男', '女' => '女'], old('gender', $friend->gender ), ['placeholder' => '選択してください', 'class' => 'form-control', 'readonly'])}}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="feature">特徴</label>
-    {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control', 'readonly'])}}
-  </div>
+  @if (!empty($friend->gender))
+  <p>{{$friend->gender}}</p>
+  @endif
+  
+  @if (!empty($friend->feature))
+  <p>{{$friend->feature}}</p>
+  @endif
 
+  @if (!empty($friend->detail))
+  <p>{{$friend->detail}}</p>
+  @endif
+
+  {{-- TODO:コンタクト履歴を表示する --}}
+  <div class="contact_section">
+    <div style="margin-bottom:0.5rem;">
+      <strong><span style="font-weigth:bold;">進捗一覧</span></strong>
+      <form action="{{ route('friendContact.create', ['friend_id' => $friend->id]) }}" style="display:inline;">
+        <input type="hidden" value="{{ $friend->id }}">
+        <button type="submit">追加</button>
+      </form>
+    </div>
+    @include('friendContact/list', ['contacts' => $friend->contacts])
+  </div>
 </div>
-
-{{-- <button type="button" onclick="showAlert();">alert</button> --}}
 
 <script>
   function deleteAlert() {

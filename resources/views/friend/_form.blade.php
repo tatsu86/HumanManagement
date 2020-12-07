@@ -5,8 +5,15 @@
   <h3>フレンド編集</h3>
   @endif
 
+  @include('_layout/errors')
+
   <div class="btn-area">
     <ul>
+      <li>
+        <form id="frmBack" action="{{ route('friend.show', ['id' => $friend->id]) }}">
+          <button type="submit" form="frmBack" class="btn btn-secondary">戻る</button>
+        </form>
+      </li>
       <li>
         @if($target == 'store')
         <button type="submit" form="frmMain" class="btn btn-primary">登録</button>
@@ -50,9 +57,15 @@
         {{Form::select('gender', ['男' => '男', '女' => '女'], old('gender', $friend->gender ), ['placeholder' => '選択してください', 'class' => 'form-control'])}}
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="feature">特徴</label>
+        <input type="text" class="form-control" name="feature" value="{{ $friend->feature }}" placeholder="名前(カナ)">
+      </div>
+    </div>
     <div class="form-group">
-      <label for="feature">特徴</label>
-      {{ Form::textarea('feature', $friend->feature, ['class' => 'form-control'])}}
+      <label for="detail">詳細</label>
+      {{ Form::textarea('detail', $friend->detail, ['class' => 'form-control'])}}
     </div>
   </form>
 </div>

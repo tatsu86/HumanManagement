@@ -7,6 +7,7 @@ use App\friend;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\FriendRequest;
 
 class friendController extends Controller
 {
@@ -44,9 +45,8 @@ class friendController extends Controller
         return view('friend/create', compact('friend'));
     }
 
-    public function store(Request $request)
+    public function store(FriendRequest $request)
     {
-        logger("storeメソッド開始");
         $friend = new friend();
         $friend->user_id = Auth::id();
         $friend->name = $request->name;
@@ -56,10 +56,9 @@ class friendController extends Controller
         // TODO:画像圧縮をする
         $file = $request->profile_img;
         if ($file) {
-            $path = $file->store('public/img');
+            $path = $image->store('public/img');
             // Image::make($file)->resize(150, 150)->save(storage_path() . '/app/public/img');
             $friend->profile_img = basename($path);
-            $friend->save();
         }
         $friend->save();
 
@@ -80,7 +79,7 @@ class friendController extends Controller
         return view('friend/edit', compact('friend'));
     }
 
-    public function update(Request $request, $id)
+    public function update(FriendRequest $request, $id)
     {
         $friend = friend::findOrFail($id);
         $friend->name = $request->name;
@@ -94,8 +93,9 @@ class friendController extends Controller
             $path = $file->store('public/img');
             // Image::make($file)->resize(150, 150)->save(storage_path() . '/app/public/img');
             $friend->profile_img = basename($path);
-            $friend->save();
+            
         }
+        $friend->save();
         return redirect("/friend");
     }
 

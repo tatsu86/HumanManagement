@@ -15,7 +15,7 @@ class FriendsTableSeeder extends Seeder
 
         $friends = [
             [
-                'user_id' => '1',
+                'user_id' => 1,
                 'name' => '竈門 炭治郎',
                 'name_kana' => 'カマド タンジロウ',
                 'gender' => '男',
@@ -26,7 +26,7 @@ class FriendsTableSeeder extends Seeder
                 'birthday' => '2005/07/14',
             ],
             [
-                'user_id' => '1',
+                'user_id' => 1,
                 'name' => '竈門 禰豆子',
                 'name_kana' => 'カマド ネズコ',
                 'gender' => '女',
@@ -37,7 +37,7 @@ class FriendsTableSeeder extends Seeder
                 'birthday' => '2005/12/28',
             ],
             [
-                'user_id' => '1',
+                'user_id' => 1,
                 'name' => '我妻 善逸',
                 'name_kana' => 'アガツマ ゼンイツ',
                 'gender' => '男',
@@ -48,7 +48,7 @@ class FriendsTableSeeder extends Seeder
                 'birthday' => '2004/09/03',
             ],
             [
-                'user_id' => '1',
+                'user_id' => 1,
                 'name' => '嘴平 伊之助',
                 'name_kana' => 'ハシビラ イノスケ',
                 'gender' => '男',
