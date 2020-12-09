@@ -6,12 +6,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div style="margin-bottom:2rem;">
-        <button class="btn btn-secondary form-control fas fa-user-friends" onclick="location.href='./friend'"> 友達一覧</button>
-      </div>
-      <div style="margin-bottom:2rem;">
-        <button class="btn btn-secondary form-control fas fa-user-friends" onclick="location.href='./friend'"> ボタン２</button>
-      </div>
+      <form action="{{ route("friend.index") }}" style="margin-bottom:2rem;">
+        <button type="submit" class="btn btn-secondary form-control fas fa-user-friends">友達一覧</button>
+      </form>
+
+      <form action="{{ route("friendContact.index") }}" style="margin-bottom:2rem;">
+        <button type="submit" class="btn btn-secondary form-control fas fa-user-friends">進捗一覧</button>
+      </form>
+
       <div style="margin-bottom:2rem;">
         <button class="btn btn-secondary form-control fas fa-user-friends" onclick="location.href='./friend'"> ボタン３</button>
       </div>

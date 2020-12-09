@@ -36,10 +36,6 @@
   @else
   <img src="{{ asset('img/unknown.png') }}" class="profile-img">
   @endif
-{{-- 
-  @if (!empty($friend->name_kana))
-  <p>{{$friend->name_kana}}</p>
-  @endif --}}
 
   @if (!empty($friend->name))
   <p style="font-weight:bold; font-size:1.2rem;">{{$friend->name}}</p>

@@ -9,11 +9,14 @@ use App\Http\Requests\FriendContactRequest;
 
 class FriendContactController extends Controller
 {
-    public function index($friend_id)
+    public function index()
     {
         // TODO:whereにfriend_idを入れたい
-        $contacts = friendContact::query();
-        $contacts->where('friend_id', $friend_id);
+        $query = friendContact::query();
+        $contacts = $query->get();
+
+        
+        // $contacts->where('friend_id', $friend_id);
                     // ->orderByRaw('contanct_date desc');
 
         return view('friendContact/index', compact('contacts'));
@@ -21,8 +24,7 @@ class FriendContactController extends Controller
 
     public function create($friend_id)
     {
-        logger("FriendContactController@create: " . $friend_id);
-
+        logger("@create");
         $contact = new friendContact();
         $contact->friend_id = $friend_id;
         return view('friendContact/create', compact('contact'));
@@ -38,12 +40,38 @@ class FriendContactController extends Controller
         $contact->contact_date = $request->contact_date;
         $contact->detail = $request->detail;
 
-        logger($contact->detail);
+        $contact->save();
+        return redirect("/friend/$contact->friend_id");
+    }
+
+    public function edit($id)
+    {
+        logger("@edit");
+        $contact = friendContact::findOrFail($id);
+        return view("/friendContact/edit", compact('contact'));
+    }
+
+    public function update(FriendContactRequest $request, $id)
+    {
+        logger("@update");
+        $contact = friendContact::findOrFail($id);
+        $contact->friend_id = $request->friend_id;
+        $contact->contact_date = $request->contact_date;
+        $contact->detail = $request->detail;
 
         $contact->save();
+        return redirect("/friendContact");
+    }
 
-        logger($erros);
+    public function destroy($id)
+    {
 
-        return redirect("/friend/$contact->friend_id");
+        $contact = friendContact::findOrFail($id);
+        $contact->delete();
+
+        //TODO:進捗詳細を開く時に、削除ボタンのアクションを引数で渡す
+        //フレンド画面から開いた場合　→　フレンド画面
+        //進捗一覧から開いた場合　→　進捗一覧
+        return redirect("/friendContact");
     }
 }
