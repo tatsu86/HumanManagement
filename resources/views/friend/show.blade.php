@@ -59,7 +59,7 @@
       <strong><span style="font-weigth:bold;">進捗一覧</span></strong>
       <form action="{{ route('friendContact.create', ['friend_id' => $friend->id]) }}" style="display:inline;">
         <input type="hidden" value="{{ $friend->id }}">
-        <button type="submit">追加</button>
+        <button type="submit" class="btn btn-success fas fa-edit"></button>
       </form>
     </div>
     @include('friendContact/list', ['contacts' => $friend->contacts])

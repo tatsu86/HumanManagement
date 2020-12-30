@@ -1,12 +1,8 @@
 @extends('_layout/header')
 @section('content')
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>フレンドリスト</h3>
-    </div>
-  </div>
+<div class="container-fluid">
+  <h3>フレンドリスト</h3>
 
   <form action="{{ url('/friend') }}" method="GET">
     <div class="form-row">
@@ -24,47 +20,50 @@
       </div>
     </div>
 
-    <a href="/friend" class="btn btn-default">クリア</a>
+    <a href="/friend" class="btn btn-secondary">クリア</a>
     <input type="submit" class="btn btn-primary" value="検索">
     <a href="/friend/create" class="btn btn-success">新規登録</a>
   </form>
 
   <div class="row">
-    <div class="col-md-11 col-md-offset-1">
-      <table class="table text-center">
-        <tr>
-          <th class="text-center"></th>
-          <th class="text-center">名前(漢字)</th>
-          <th class="text-center">名前(カナ)</th>
-          <th class="text-center">性別</th>
-          <th class="text-center">特徴</th>
-          <th class="text-center">編集</th>
-        </tr>
-        @foreach($friends as $friend)
-        <tr>
-          <td>
-            @if (!empty($friend->profile_img))
-            <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm">
-            @else
-            {{-- TODO:unknown画像を呼び出せていない --}}
-            <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm">
-            @endif
-            
-          </td>
-          <td>{{ $friend->name }}</td>
-          <td>{{ $friend->name_kana }}</td>
-          <td>{{ $friend->gender }}</td>
-          <td>{{ $friend->feature }}</td>
-          <td>
-            <form action="/friend/{{ $friend->id }}" method="get">
-              <input type="hidden" name="id">
-              <button type="submit" class="btn btn-primary">編集</button>
-            </form>
-          </td>
-        </tr>
-        @endforeach
+    {{-- <div class="col-md-11 col-md-offset-1"> --}}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="text-center"></th>
+            <th class="text-center">名前(漢字)</th>
+            <th class="text-center">名前(カナ)</th>
+            <th class="text-center">性別</th>
+            <th class="text-center">特徴</th>
+            <th class="text-center" style="width:5rem;">編集</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($friends as $friend)
+          <tr>
+            <td>
+              @if (!empty($friend->profile_img))
+              <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm">
+              @else
+              <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm">
+              @endif
+              
+            </td>
+            <td>{{ $friend->name }}</td>
+            <td>{{ $friend->name_kana }}</td>
+            <td>{{ $friend->gender }}</td>
+            <td>{{ $friend->feature }}</td>
+            <td style="width:5rem;">
+              <form action="/friend/{{ $friend->id }}" method="get">
+                <input type="hidden" name="id">
+                <button type="submit" class="btn btn-primary">編集</button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
       </table>
-    </div>
+    {{-- </div> --}}
   </div>
 </div>
 @endsection

@@ -3,8 +3,9 @@
 <div class="btn-area">
   <ul>
     <li>
-      {{-- TODO:戻るボタンを実装する --}}
-      <button>戻る</button>
+      <form action="{{ url()->previous() }}">
+        <button type="submit" class="btn btn-secondary">戻る</button>
+      </form>
     </li>
     <li>
       @if($target == 'store')
