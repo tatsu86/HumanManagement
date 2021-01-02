@@ -10,7 +10,7 @@
   <div class="btn-area">
     <ul>
       <li>
-        <form id="frmBack" action="{{ route('friend.show', ['id' => $friend->id]) }}">
+        <form id="frmBack" action="{{ url()->previous() }}">
           <button type="submit" form="frmBack" class="btn btn-secondary">戻る</button>
         </form>
       </li>
