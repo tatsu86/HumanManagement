@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\friendContact;
+use App\FriendContact;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\FriendContactRequest;
 
@@ -12,7 +12,7 @@ class FriendContactController extends Controller
     public function index()
     {
         // TODO:whereにfriend_idを入れたい
-        $query = friendContact::query();
+        $query = FriendContact::query();
         $contacts = $query->get();
 
         
@@ -34,7 +34,7 @@ class FriendContactController extends Controller
     {
         logger("@store");
 
-        $contact = new friendContact();
+        $contact = new FriendContact();
         $contact->user_id = Auth::id();
         $contact->friend_id = $request->friend_id;
         $contact->contact_date = $request->contact_date;
@@ -47,14 +47,14 @@ class FriendContactController extends Controller
     public function edit($id)
     {
         logger("@edit");
-        $contact = friendContact::findOrFail($id);
+        $contact = FriendContact::findOrFail($id);
         return view("/friendContact/edit", compact('contact'));
     }
 
     public function update(FriendContactRequest $request, $id)
     {
         logger("@update");
-        $contact = friendContact::findOrFail($id);
+        $contact = FriendContact::findOrFail($id);
         $contact->friend_id = $request->friend_id;
         $contact->contact_date = $request->contact_date;
         $contact->detail = $request->detail;
@@ -66,7 +66,7 @@ class FriendContactController extends Controller
     public function destroy($id)
     {
 
-        $contact = friendContact::findOrFail($id);
+        $contact = FriendContact::findOrFail($id);
         $contact->delete();
 
         //TODO:進捗詳細を開く時に、削除ボタンのアクションを引数で渡す

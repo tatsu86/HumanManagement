@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\friend;
+use App\Friend;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +17,7 @@ class friendController extends Controller
         $feature = $request->input('feature');
         $gender = $request->input('gender');
 
-        $query = friend::query();
+        $query = Friend::query();
 
         $query->where('user_id', Auth::id());
 
@@ -41,13 +41,13 @@ class friendController extends Controller
 
     public function create()
     {
-        $friend = new friend();
+        $friend = new Friend();
         return view('friend/create', compact('friend'));
     }
 
     public function store(FriendRequest $request)
     {
-        $friend = new friend();
+        $friend = new Friend();
         $friend->user_id = Auth::id();
         $friend->name = $request->name;
         $friend->name_kana = $request->name_kana;
@@ -67,21 +67,21 @@ class friendController extends Controller
 
     public function show($id)
     {
-        $friend = friend::findOrFail($id);
+        $friend = Friend::findOrFail($id);
 
         return view('friend/show', compact('friend'));
     }
 
     public function edit($id)
     {
-        $friend = friend::findOrFail($id);
+        $friend = Friend::findOrFail($id);
 
         return view('friend/edit', compact('friend'));
     }
 
     public function update(FriendRequest $request, $id)
     {
-        $friend = friend::findOrFail($id);
+        $friend = Friend::findOrFail($id);
         $friend->name = $request->name;
         $friend->name_kana = $request->name_kana;
         $friend->gender = $request->gender;
@@ -101,7 +101,7 @@ class friendController extends Controller
 
     public function destroy($id)
     {
-        $friend = friend::findOrFail($id);
+        $friend = Friend::findOrFail($id);
         $file_name = $friend->profile_img;
         $friend->delete();
         
