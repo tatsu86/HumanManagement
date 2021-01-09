@@ -26,7 +26,6 @@ class friendRequest extends FormRequest
         return [
             'name' => 'required|string|max:30',
             'name_kana' => 'string|max:30',
-            'gender' => 'string|max:1',
             'feature' => 'string|max:255',
         ];
     }
@@ -36,9 +35,8 @@ class friendRequest extends FormRequest
         return [
           'name.required' => '名前は必ず入力してください。',
           'name.max' => '名前は30文字以内で入力してください。',
-          'name_kana.required' => '名前カナは必ず入力してください。',
           'name_kana.max' => '名前カナは30文字以内で入力してください。',
-          
+          'feature' => '特徴は255文字以内で入力してください。',
         ];
     }
 }

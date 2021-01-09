@@ -12,7 +12,7 @@
       </div>
       <div class="form-group col-md-3"> 
         <label for="gender">性別</label>
-        {{Form::select('gender', ['男' => '男', '女' => '女'], $gender, ['placeholder' => '性別', 'class' => 'form-control'])}}
+        {{Form::select('gender', ['男' => '男', '女' => '女'], $gender, ['placeholder' => '性別を選んでください', 'class' => 'form-control'])}}
       </div>
       <div class="form-group col-md-4">
         <label>特徴</label>
@@ -30,29 +30,36 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="text-center"></th>
-            <th class="text-center">名前(漢字)</th>
-            <th class="text-center">名前(カナ)</th>
-            <th class="text-center">性別</th>
-            <th class="text-center">特徴</th>
-            <th class="text-center" style="width:5rem;">編集</th>
+            <th></th>
+            <th>名前</th>
+            <th>特徴</th>
+            <th style="width:5rem;">編集</th>
           </tr>
         </thead>
         <tbody>
           @foreach($friends as $friend)
           <tr>
-            <td>
+            <td style="vertical-align:middle; width:3rem;">
               @if (!empty($friend->profile_img))
-              <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm">
+                @if ($friend->gender == '男')
+                <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm" style="border: 2px solid blue;">
+                @elseif ($friend->gender == '女')
+                <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm" style="border: 2px solid pink;">
+                @else
+                <img src="{{ asset('storage/img/' . $friend->profile_img) }}" class="profile-img-sm">
+                @endif
               @else
-              <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm">
+                @if ($friend->gender == '男')
+                <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm" style="border: 2px solid blue;">
+                @elseif ($friend->gender == '女')
+                <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm" style="border: 2px solid hotpink;">
+                @else
+                <img src="{{ asset('img/unknown.png') }}" class="profile-img-sm">
+                @endif
               @endif
-              
             </td>
-            <td>{{ $friend->name }}</td>
-            <td>{{ $friend->name_kana }}</td>
-            <td>{{ $friend->gender }}</td>
-            <td>{{ $friend->feature }}</td>
+            <td style="width:10rem;"><span style="font-size:0.8rem;">{{ $friend->name_kana }}</span><br><span style="font-size:1.2rem;">{{ $friend->name }}</span></td>
+            <td style="vertical-align:middle;">{{ $friend->feature }}</td>
             <td style="width:5rem;">
               <form action="/friend/{{ $friend->id }}" method="get">
                 <input type="hidden" name="id">

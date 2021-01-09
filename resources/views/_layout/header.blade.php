@@ -3,7 +3,7 @@
   {{-- TODO:app.jsが読み込めない --}}
   <script src="{{ mix('js/app.js') }}" defer></script>
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
   {{-- フォント追加 --}}
@@ -46,5 +46,4 @@
   </nav>
 </head>
   {{-- <button type="button" onclick="showAlert();">showAlert</button> --}}
-
   @yield('content')
