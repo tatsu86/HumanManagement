@@ -11,6 +11,19 @@ body {
   background-color: whitesmoke;
 }
 
+.flash_message {
+  position: absolute;
+  width:100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
 .title {
   font-family:'Caveat', cursive;
   font-size:1.5rem;

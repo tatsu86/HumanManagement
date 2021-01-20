@@ -1,6 +1,12 @@
 @extends('_layout/header')
 @section('content')
 
+@if (session('success'))
+<div class="alert alert-success flash_message">
+  {{ session('success') }}
+</div>
+@endif
+
 <div class="container-fluid">
   <h3>フレンドリスト</h3>
 

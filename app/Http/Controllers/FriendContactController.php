@@ -22,12 +22,15 @@ class FriendContactController extends Controller
         return view('friendContact/index', compact('contacts'));
     }
 
-    public function create($friend_id)
+    public function create($friend_id, $redirect_type)
     {
         logger("@create");
         $contact = new friendContact();
         $contact->friend_id = $friend_id;
-        return view('friendContact/create', compact('contact'));
+        return view('friendContact/create')->with([
+            'contact' => $contact,
+            'redirect_type' => $redirect_type
+        ]);
     }
 
     public function store(FriendContactRequest $request)
@@ -41,14 +44,23 @@ class FriendContactController extends Controller
         $contact->detail = $request->detail;
 
         $contact->save();
-        return redirect("/friend/$contact->friend_id");
+        session()->flash('success', 'コンタクトを登録しました。');
+
+        if ($request->redirect_type == 'friend') {
+            return redirect("/friend/$contact->friend_id");
+        } elseif ($request->redirect_type == 'contact') {
+            return redirect("/friendContact");
+        }
     }
 
-    public function edit($id)
+    public function edit($id, $redirect_type)
     {
         logger("@edit");
         $contact = FriendContact::findOrFail($id);
-        return view("/friendContact/edit", compact('contact'));
+        return view("/friendContact/edit")->with([
+            'contact' => $contact,
+            'redirect_type' => $redirect_type
+        ]);
     }
 
     public function update(FriendContactRequest $request, $id)
@@ -60,18 +72,30 @@ class FriendContactController extends Controller
         $contact->detail = $request->detail;
 
         $contact->save();
-        return redirect("/friendContact");
+        session()->flash('success', 'コンタクトを保存しました。');
+
+        if ($request->redirect_type == 'friend') {
+            logger("redirect_type = friend");
+            return redirect("/friend/$contact->friend_id");
+        } elseif ($request->redirect_type == 'contact') {
+            logger("redirect_type = contact");
+            return redirect("/friendContact");
+        }
     }
 
-    public function destroy($id)
+    public function destroy($id, $redirect_type)
     {
-
         $contact = FriendContact::findOrFail($id);
+        $friend_id = $contact->friend_id;
         $contact->delete();
+        session()->flash('success', 'コンタクトを削除しました。');
 
-        //TODO:進捗詳細を開く時に、削除ボタンのアクションを引数で渡す
-        //フレンド画面から開いた場合　→　フレンド画面
-        //進捗一覧から開いた場合　→　進捗一覧
+        if ($redirect_type == 'friend') {
+            return redirect("/friend/$friend_id");
+        } elseif ($redirect_type == 'contact') {
+            return redirect("/friendContact");
+        }
+
         return redirect("/friendContact");
     }
 }

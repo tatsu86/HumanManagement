@@ -61,6 +61,7 @@ class friendController extends Controller
             $friend->profile_img = basename($path);
         }
         $friend->save();
+        session()->flash('success', '友達を登録しました。');
 
         return redirect("/friend");
     }
@@ -96,6 +97,8 @@ class friendController extends Controller
             
         }
         $friend->save();
+        session()->flash('success', '友達の情報を保存しました。');
+
         return redirect("/friend");
     }
 
@@ -110,6 +113,8 @@ class friendController extends Controller
             // 画像を削除
             \File::delete($delete_path);
         }
+
+        session()->flash('success', '友達を削除しました。');
 
         return redirect("/friend");
     }

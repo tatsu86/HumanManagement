@@ -12,7 +12,7 @@
       <td style="width:8rem;">{{ $contact->contact_date }}</td>
       <td>{{ $contact->detail }}</td>
       <td style="width:5rem;">
-        <form action="{{ route("friendContact.edit", ['id' => $contact->id]) }}">
+        <form action="{{ route("friendContact.edit", [$contact->id, 'friend']) }}">
           <button type="submit" class="btn btn-primary">編集</button>
         </form>
       </td>

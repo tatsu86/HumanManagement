@@ -25,8 +25,8 @@ class friendRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:30',
-            'name_kana' => 'string|max:30',
-            'feature' => 'string|max:255',
+            'name_kana' => 'max:30',
+            'feature' => 'max:255',
         ];
     }
 

@@ -60,7 +60,7 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="feature">特徴</label>
-        <input type="text" class="form-control" name="feature" value="{{ $friend->feature }}" placeholder="名前(カナ)">
+        <input type="text" class="form-control" name="feature" value="{{ $friend->feature }}" placeholder="">
       </div>
     </div>
     <div class="form-group">

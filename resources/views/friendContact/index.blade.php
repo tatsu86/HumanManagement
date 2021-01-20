@@ -1,7 +1,7 @@
 @extends('_layout/header')
 @section('content')
 <div class="container">
-  <h3>進捗一覧</h3>
+  <h3>コンタクト一覧</h3>
   <table class="table table-hover">
     <tr>
       <th style="width:8rem;">日付</th>
@@ -13,7 +13,7 @@
       <td style="width:8rem;">{{ $contact->contact_date }}</td>
       <td>{{ $contact->detail }}</td>
       <td style="width:5rem;">
-        <form action="{{ route('friendContact.edit', ['id' => $contact->id]) }}">
+        <form action="{{ route('friendContact.edit', [$contact->id, 'contact']) }}">
           <button type="submit" class="btn btn-primary">編集</button>
         </form>
       </td>

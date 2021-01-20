@@ -1,5 +1,12 @@
 @extends('_layout/header')
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success flash_message">
+  {{ session('success') }}
+</div>
+@endif
+
 <div class="container" style="margin-botton:100px;">
   <h3>フレンド詳細</h3>
 
@@ -56,8 +63,8 @@
   {{-- TODO:コンタクト履歴を表示する --}}
   <div class="contact_section">
     <div style="margin-bottom:0.5rem;">
-      <strong><span style="font-weigth:bold;">進捗一覧</span></strong>
-      <form action="{{ route('friendContact.create', ['friend_id' => $friend->id]) }}" style="display:inline;">
+      <strong><span style="font-weigth:bold;">コンタクト一覧</span></strong>
+      <form action="{{ route('friendContact.create', [$friend->id, 'friend']) }}" style="display:inline;">
         <input type="hidden" value="{{ $friend->id }}">
         <button type="submit" class="btn btn-success fas fa-edit"></button>
       </form>

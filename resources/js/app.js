@@ -1,5 +1,11 @@
 require('./bootstrap');
 
+$(function() {
+  // フラッシュメッセージ
+  $('.flash_message').fadeOut(5000);
+});
+
+
 // window.$ = window.jQuery = require('jquery');
 
 function deleteAlert() {

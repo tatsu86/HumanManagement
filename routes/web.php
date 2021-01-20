@@ -28,11 +28,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('friend/{id}', 'FriendController@show')->name('friend.show');
 
     Route::get('friendContact', 'FriendContactController@index')->name('friendContact.index');
-    Route::get('friendContact/{friend_id}/create', 'FriendContactController@create')->name('friendContact.create');
+    Route::get('friendContact/{friend_id}/{redirect_type}/create', 'FriendContactController@create')->name('friendContact.create');
     Route::post('friendContact', 'FriendContactController@store')->name('friendContact.store');
-    Route::get('friendContact/{id}/edit', 'FriendContactController@edit')->name('friendContact.edit');
+    Route::get('friendContact/{id}/{redirect_type}', 'FriendContactController@edit')->name('friendContact.edit');
     Route::post('friendContact/{id}', 'FriendContactController@update')->name('friendContact.update');
-    Route::delete('friendContact/{id}', 'FriendContactController@destroy')->name('friendContact.destroy');
+    Route::delete('friendContact/{id}/{redirect_type}', 'FriendContactController@destroy')->name('friendContact.destroy');
 });
 
 

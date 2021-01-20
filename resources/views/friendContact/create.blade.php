@@ -3,7 +3,7 @@
 <div class="container">
   <h3>連絡登録フォーム</h3>
 
-  @include('friendContact/_form', ['target' => 'store'])
+  @include('friendContact/_form', ['target' => 'store', 'redirect_type' => $redirect_type])
 
 </div>
 @endsection
