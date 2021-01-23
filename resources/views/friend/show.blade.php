@@ -63,7 +63,7 @@
   {{-- TODO:コンタクト履歴を表示する --}}
   <div class="contact_section">
     <div style="margin-bottom:0.5rem;">
-      <strong><span style="font-weigth:bold;">コンタクト一覧</span></strong>
+      <strong><span style="font-weigth:bold;">コンタクトリスト</span></strong>
       <form action="{{ route('friendContact.create', [$friend->id, 'friend']) }}" style="display:inline;">
         <input type="hidden" value="{{ $friend->id }}">
         <button type="submit" class="btn btn-success fas fa-edit"></button>

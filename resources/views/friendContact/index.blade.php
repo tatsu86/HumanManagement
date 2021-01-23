@@ -1,7 +1,19 @@
 @extends('_layout/header')
 @section('content')
 <div class="container">
-  <h3>コンタクト一覧</h3>
+  <h3>コンタクトリスト</h3>
+
+  <form id="search_form" action="{{ route("friendContact.index")}}" method="GET">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>内容</label>
+        <input type="text" name="detail" class="form-control" value="{{ $detail }}">
+      </div>
+    </div>
+    <input type="button" class="btn btn-secondary clear-btn" value="クリア" onclick="showAlert();">  
+    <input type="submit" class="btn btn-primary" value="検索">
+  </form>
+
   <table class="table table-hover">
     <tr>
       <th style="width:8rem;">日付</th>

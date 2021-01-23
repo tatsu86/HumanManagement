@@ -9,17 +9,23 @@ use App\Http\Requests\FriendContactRequest;
 
 class FriendContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // TODO:whereにfriend_idを入れたい
         $query = FriendContact::query();
-        $contacts = $query->get();
-
         
-        // $contacts->where('friend_id', $friend_id);
-                    // ->orderByRaw('contanct_date desc');
 
-        return view('friendContact/index', compact('contacts'));
+        if (!empty($request->detail)) {
+            $query->where('detail', "like", "%{$request->detail}%");
+        }
+
+        $contacts = $query->orderByRaw('contact_date desc')
+                        ->get();
+
+        return view('friendContact/index')->with([
+            'contacts' => $contacts,
+            'detail' => $request->detail,
+        ]);
     }
 
     public function create($friend_id, $redirect_type)

@@ -10,7 +10,7 @@
 <div class="container-fluid">
   <h3>フレンドリスト</h3>
 
-  <form action="{{ url('/friend') }}" method="GET">
+  <form id="search_form" action="{{ url('/friend') }}" method="GET">
     <div class="form-row">
       <div class="form-group col-md-3">
         <label for="name">名前</label>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <a href="/friend" class="btn btn-secondary">クリア</a>
+    <input type="button" class="btn btn-secondary clear-btn" value="クリア">
     <input type="submit" class="btn btn-primary" value="検索">
     <a href="/friend/create" class="btn btn-success">新規登録</a>
   </form>
